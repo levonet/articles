@@ -1,6 +1,6 @@
 ## hello__bem в кокаиновом облаке
 
-<!-- ![Cocaine](hello__bem_in-cocaine-cloud-logo.svg) -->
+<div style="width:400px;height:400px;float:left;margin:0 15px 15px 0;-webkit-border-radius:200px;-khtml-border-radius:200px;-moz-border-radius:200px;border-radius:200px;-webkit-box-shadow:10px 10px 5px #ccc;-moz-box-shadow:10px 10px 5px #ccc;box-shadow:10px 10px 5px #ccc"><div style="margin:0;width:400px;height:400px;background-color:#000;background-image:url('http://img-fotki.yandex.ru/get/9836/204961608.0/0_ad3b0_2d1c4a20_L.png');background-repeat:no-repeat;background-position:center;display:block;position:relative;-webkit-border-radius:200px;-khtml-border-radius:200px;-moz-border-radius:200px;border-radius:200px;-webkit-box-shadow:inset 0 0 15px #fff;-moz-box-shadow:inset 0 0 15px #fff;box-shadow:inset 0 0 15px #fff"></div></div>
 
 Что под капотом у облака?
 
