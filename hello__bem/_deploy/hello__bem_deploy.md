@@ -271,8 +271,61 @@ BORSCHIK_FREEZABLE_EXTS='jpg jpeg gif ico png swf svg ttf eot otf woff css js'
 
 ### ~~Добавляем новый уровень переопределения с конфигурацией~~
 
+## Конфигурация сборки (development, testing, production)
+
+<!-- TODO -->
+
+`./configs/[?common|development|production|testing]`
+  `app.json`
+  `borschik`
+
+`ln -sf ../configs/current ./node_modules/configs`
+`ln -sf $NODE_ENV ./configs/current`
+
+```js
+{
+    "NODE_ENV": "production",
+    "metrika": 1234567890
+}
+```
+
+`YENV=production node_modules/.bin/enb make`
+
+`./*.bundles/*/*.bemjson.js`
+
+```js
+        {
+            block: 'metrika',
+            id: '{METRIKA_ID}'
+        }
+```
+
+`common.blocks/metrika/metrika.bemhtml`
+
+```js
+block('metrika')(
+    match()(function () { return !this.ctx.id; }).def()(false),
+
+    content()(function () {
+        var counterId = this.ctx.id;
+
+        return '<script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function () ' +
+            '{ try { w["yaCounter' + counterId + '"] = new Ya.Metrika({id:' + counterId + ', enableAll: true,' +
+            ' webvisor:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = ' +
+            'd.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = ' +
+            '"text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") +' +
+            ' "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") ' +
+            '{ d.addEventListener("DOMContentLoaded", f); } else { f(); } })(document, window, ' +
+            '"yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/' + counterId + '" ' +
+            'style="position:absolute; left:-9999px;" alt="" /></div></noscript>';
+    })
+);
+```
 
 ## Библиотеки
+
+<!-- выносим в отдельную библиотеку блоки с метрикой, борщиком и error, так как их мы хотим реиспользовать в других проектах,
+а также это даст возможность развивать и тестировать общие блоки [150505] -->
 
 Осталось немного времени и мы позволим себе порефакторить конфигурацию сборки. В библиотеки принято выносить блоки или их части, общие для нескольких проектов. Но мы поступим наоборот. Мы вынесем из нашего проекта уровень с конфигурацией блоков в отдельную библиотеку, которая будет храниться в условно-приватном репозитории. Это нам позволит не вносить данные конфигурации каждый раз, когда мы склонировали репозиторий на новое место.
 
@@ -280,9 +333,6 @@ BORSCHIK_FREEZABLE_EXTS='jpg jpeg gif ico png swf svg ttf eot otf woff css js'
 > Первое. Папка с блоками магическим образом должна появиться в вашем проекте во время сборки. Рекомендуемый способ, это установка библиотеке через `bower`. Для этого в `./bower.json` в `dependencies` достаточно добавить ссылку на вашу библиотеку в формате `"libname": "git url"` и запустить команду `bower i`. Библиотека клонируется в каталог `./libs`. Более подробно можно прочитать в документации [bower][bower].
 > Второе. Подключить к сборке папку с блоками как уровень переопределения. Например, для инструмента сборки `enb`, как у нас, нужно в `./.enb/make.js` в функцию `getDesktops(config)` добавить строчку TODO (ссылаемся на доку и белем описание из неё).
 
-Для специфической задачи выберем специфический способ подключения библиотеки
-
-<!-- выносим блок метрики в отдельную библиотеку или -->
 <!-- выносим уровень с конфигом в условно-закрытый репозиторий и подключаем его сабмодулем -->
 
 <!-- для общих библиотек рекомендуется использовать подключение через [bower][bower] -->
