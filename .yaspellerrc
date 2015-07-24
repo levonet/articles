@@ -1,0 +1,14 @@
+{
+  "excludeFiles": [
+    ".git",
+    ".yaspeller",
+    "node_modules",
+    "hello__bem/_deploy",
+    "hello__bem/_how2pass2library",
+    "hello__bem/_in-cocaine-cloud"
+  ],
+  "lang": [ "ru" ],
+  "fileExtensions": [
+    ".md"
+  ]
+}
