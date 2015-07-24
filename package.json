@@ -1,0 +1,15 @@
+{
+  "author": {
+    "name": "Pavel Bashinsky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/levonet/articles.git"
+  },
+  "devDependencies": {
+    "yaspeller": "~2.5.0"
+  },
+  "scripts": {
+    "yaspeller": "./node_modules/.bin/yaspeller --dictionary .yaspeller/ru_slang.json ."
+  }
+}
