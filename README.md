@@ -1,3 +1,4 @@
+[![devDependency Status](https://david-dm.org/levonet/articles/dev-status.svg)](https://david-dm.org/levonet/articles#info=devDependencies)
 ## Статьи
 
 ### hello__bem
