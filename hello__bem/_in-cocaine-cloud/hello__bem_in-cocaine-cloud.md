@@ -595,7 +595,16 @@ nm build/Release/nodejs_cocaine_framework.node |grep make_error_code
 
 # IPVS
 
-http://wiki.yandex-team.ru/paulus/ipvs
+```sh
+# очистить конфигурацию
+ipvsadm -C
+# собрать новый балансер на 80 порту
+ipvsadm -A -t my.host.com:80 -s lc
+# добавить три риала. localhost добавится раутингом, а не маскарадом
+ipvsadm -a -t my.host.com:80 -r gentoo01:80 -m
+ipvsadm -a -t my.host.com:80 -r gentoo02:80 -m
+ipvsadm -a -t my.host.com:80 -r gentoo03:80 -m
+```
 
 # mongo
 
